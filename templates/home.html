@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  </head>
+  <body>
+    <nav>
+        <a href="{{ url_for('add_book') }}">Add Book</a>
+        <a href="{{ url_for('add_author') }}">Add Author</a><br><br>
+    </nav>
+    <div>
+        <form action="/" method="Post">
+            <select id="sorted" name="sort">
+                <option value="title">Sort by title</option>
+                <option value="author">Sort by author</option>
+            </select>
+            <input type="submit" value="Sort"><br><br>
+        </form>
+    </div>
+    <div>
+        <form action="/search" method="GET">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search">
+            <input type="submit" value="Search"><br><br>
+        </form>
+    </div>
+    {% for book in books %}
+    <div> <h3>{{ book.title }}</h3>
+          <h4> {{ book.author }}</h4>
+          <img src="{{ book.cover_image_url }}" alt="Book Cover Image"/>
+            <form action="{{ url_for('delete', book_id=book.id) }}" method="POST">
+                <input type="hidden" name="book_id" value="{{ book.id }}"><br>
+                <button type="submit">Delete Book</button><br><br><br><br>
+            </form>
+
+    </div>
+    {% endfor %}
+
+  </body>
+</html>

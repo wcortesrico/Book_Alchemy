@@ -30,7 +30,7 @@
     <div> <h3>{{ book.title }}</h3>
           <h4> {{ book.author }}</h4>
           <img src="{{ book.cover_image_url }}" alt="Book Cover Image"/>
-            <form action="{{ url_for('delete', book_id=book.id) }}" method="POST">
+            <form action="{{ url_for('delete', book_id=book.id) }}" method="GET">
                 <input type="hidden" name="book_id" value="{{ book.id }}"><br>
                 <button type="submit">Delete Book</button><br><br><br><br>
             </form>
